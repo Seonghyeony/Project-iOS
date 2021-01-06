@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CB1929FE25A3059400781BE4 /* BountyList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BountyList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB1929FE25A3059400781BE4 /* BountyList_CollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BountyList_CollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB192A0125A3059400781BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB192A0325A3059400781BE4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CB192A0825A3059400781BE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		CB1929FF25A3059400781BE4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CB1929FE25A3059400781BE4 /* BountyList.app */,
+				CB1929FE25A3059400781BE4 /* BountyList_CollectionView.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,9 +76,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CB1929FD25A3059400781BE4 /* BountyList */ = {
+		CB1929FD25A3059400781BE4 /* BountyList_CollectionView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB192A1225A3059800781BE4 /* Build configuration list for PBXNativeTarget "BountyList" */;
+			buildConfigurationList = CB192A1225A3059800781BE4 /* Build configuration list for PBXNativeTarget "BountyList_CollectionView" */;
 			buildPhases = (
 				CB1929FA25A3059400781BE4 /* Sources */,
 				CB1929FB25A3059400781BE4 /* Frameworks */,
@@ -88,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = BountyList;
+			name = BountyList_CollectionView;
 			productName = BountyList;
-			productReference = CB1929FE25A3059400781BE4 /* BountyList.app */;
+			productReference = CB1929FE25A3059400781BE4 /* BountyList_CollectionView.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -107,7 +107,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CB1929F925A3059400781BE4 /* Build configuration list for PBXProject "BountyList" */;
+			buildConfigurationList = CB1929F925A3059400781BE4 /* Build configuration list for PBXProject "BountyList_CollectionView" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -120,7 +120,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CB1929FD25A3059400781BE4 /* BountyList */,
+				CB1929FD25A3059400781BE4 /* BountyList_CollectionView */,
 			);
 		};
 /* End PBXProject section */
@@ -330,7 +330,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CB1929F925A3059400781BE4 /* Build configuration list for PBXProject "BountyList" */ = {
+		CB1929F925A3059400781BE4 /* Build configuration list for PBXProject "BountyList_CollectionView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB192A1025A3059800781BE4 /* Debug */,
@@ -339,7 +339,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CB192A1225A3059800781BE4 /* Build configuration list for PBXNativeTarget "BountyList" */ = {
+		CB192A1225A3059800781BE4 /* Build configuration list for PBXNativeTarget "BountyList_CollectionView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB192A1325A3059800781BE4 /* Debug */,
