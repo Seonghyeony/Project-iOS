@@ -52,16 +52,31 @@ class DetailViewController: UIViewController {
          오토레이아웃의 Constraints를 가지고 animation을 하는 방법.
          */
         // constant 값들이 변경되면 Layouting을 다시 해야 한다.
-        nameLabelCenterX.constant = view.bounds.width
-        bountyLabelCenterX.constant = view.bounds.width
+//        nameLabelCenterX.constant = view.bounds.width
+//        bountyLabelCenterX.constant = view.bounds.width
+        
+        /**
+         View Properties를 사용하여 Animating 하는 방법.
+            1. Position & Size - Bounds, frame, center => 주의사항: 오토레이아웃의 범위를 넘지 말자.
+            2. Transformation - Rotation, scale, translation => AffineTransform을 사용.
+            3. Appearance - backgroundColor, alpha
+         */
+        
+        // 우측에 있고 스케일은 3배, 180도 회전해서
+        nameLabel.transform = CGAffineTransform(translationX: view.bounds.width, y: 0).scaledBy(x: 3, y: 3).rotated(by: 180)
+        bountyLabel.transform = CGAffineTransform(translationX: view.bounds.width, y: 0).scaledBy(x: 3, y: 3).rotated(by: 180)
+        
+        nameLabel.alpha = 0     // 투명도.
+        bountyLabel.alpha = 0
     }
     
     private func showAnimation() {
-        nameLabelCenterX.constant = 0
-        bountyLabelCenterX.constant = 0
-        
-        // curveEaseIn: 빨라졌다가 천천히 갈건지 등 정하는 것.
-        // completion: 애니메이션이 끝났을 때 무엇을 할 것인가?
+//        // NSLayoutConstraint 라는 Constraint로 애니메이팅.
+//        nameLabelCenterX.constant = 0
+//        bountyLabelCenterX.constant = 0
+//
+//        // curveEaseIn: 빨라졌다가 천천히 갈건지 등 정하는 것.
+//        // completion: 애니메이션이 끝났을 때 무엇을 할 것인가?
 //        UIView.animate(withDuration: 0.3,
 //                       delay: 0.1,
 //                       options: .curveEaseIn,
@@ -69,10 +84,25 @@ class DetailViewController: UIViewController {
 //            self.view.layoutIfNeeded()
 //        }, completion: nil)
 //
-        // usingSpringWithDamping: 스프링처럼 튀게.
-        UIView.animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: .allowUserInteraction, animations: {
-            // 레이아웃을 다시 해야할 필요가 있으면 다시 해라!
-            self.view.layoutIfNeeded()
+//        // usingSpringWithDamping: 스프링처럼 튀게.
+//        UIView.animate(withDuration: 0.5, delay: 0.2, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: .allowUserInteraction, animations: {
+//            // 레이아웃을 다시 해야할 필요가 있으면 다시 해라!
+//            self.view.layoutIfNeeded()
+//        }, completion: nil)
+//
+//        // 이미지 뷰 뒤집히면서 표시.
+//        UIView.transition(with: imgView, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: .allowUserInteraction, animations: {
+            // identity: 변하기 전의 모습으로 접근 가능.
+            self.nameLabel.transform = CGAffineTransform.identity
+            self.nameLabel.alpha = 1
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 1, delay: 0.2, usingSpringWithDamping: 0.6, initialSpringVelocity: 2, options: .allowUserInteraction, animations: {
+            // identity: 변하기 전의 모습으로 접근 가능.
+            self.bountyLabel.transform = CGAffineTransform.identity
+            self.bountyLabel.alpha = 1
         }, completion: nil)
         
         // 이미지 뷰 뒤집히면서 표시.
@@ -88,12 +118,10 @@ class DetailViewController: UIViewController {
         }
     }
     
-    
     @IBAction func close(_ sender: Any) {
         // 사라진다.
         dismiss(animated: true, completion: nil)    // completion: 사라진 후에 동작되어야 할 것.
     }
-    
 }
 
 class DetailViewModel {
