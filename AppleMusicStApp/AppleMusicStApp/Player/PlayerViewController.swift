@@ -22,13 +22,13 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var totalDurationLabel: UILabel!
     
     //TODO: SimplePlayer 만들고 프로퍼티 추가
+    let simplePlayer = SimplePlayer.shared  // 싱글톤
     
     var timeObserver: Any?
     var isSeeking: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         updatePlayButton()
         updateTime(time: CMTime.zero)
         // TODO: TimeObserver 구현
