@@ -8,10 +8,12 @@
 
 import UIKit
 
+// 다크모드
 public enum DefaultStyle {
     public enum Colors {
         public static let tint: UIColor = {
             if #available(iOS 13.0, *) {
+                // traitCollction: 다크모드인지 아닌지 판별 가능.
                 return UIColor { traitCollction in
                     if traitCollction.userInterfaceStyle == .dark {
                         return .white
