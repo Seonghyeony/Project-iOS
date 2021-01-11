@@ -124,7 +124,7 @@ class TodoViewModel {
     }
     
     var numOfSection: Int {
-        return Section.allCases.count
+        return Section.allCases.count   // 전체 케이스의 갯수
     }
     
     func addTodo(_ todo: Todo) {
