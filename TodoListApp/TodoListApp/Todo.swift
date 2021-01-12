@@ -8,6 +8,20 @@
 
 import UIKit
 
+/**
+ Swift에서 json > [String: Any] 이런 타입이다.
+ let json: [String: Any]
+ 
+ json을 파싱하는 것이 시간이 많이 걸리고 손이 많이 가는 작업이였다.
+ Codable 이 나오면서부터 노다가였던 파싱 과정을 할 필요가 없게 되었다.
+ 
+ Codable은 json 형태의 파일을 바로 Swift Struct 형태로 바꿔줬다.
+ 
+ 그래서 Struct Codable 프로토콜을 따르면 아주 쉽게 json 형태의 데이터를 만들 수 있고, json 형태를 Struct로 변환이 쉽게 해주는 징검다리가 Codable이다.
+ 
+ Codable은 인코딩과 디코딩이 합쳐진 형태이다.
+ Codable = Encodable & Decodable
+ */
 
 // TODO: Codable과 Equatable 추가
 struct Todo: Codable, Equatable {

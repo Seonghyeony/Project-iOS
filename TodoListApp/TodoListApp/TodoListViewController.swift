@@ -31,6 +31,14 @@ class TodoListViewController: UIViewController {
         // [완료] TODO: 데이터 불러오기
         todoListViewModel.loadTasks()
         
+        let todo = TodoManager.shared.createTodo(detail: "Corona 싫어!", isToday: true)
+        Storage.saveTodo(todo, fileName: "test.json")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let todo = Storage.restoreTodo("test.json")
+        print("---> restore from disk: \(todo)")
     }
     
     @IBAction func isTodayButtonTapped(_ sender: Any) {
@@ -121,6 +129,7 @@ extension TodoListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// View 객체.
 class TodoListCell: UICollectionViewCell {
     
     @IBOutlet weak var checkButton: UIButton!
@@ -133,23 +142,26 @@ class TodoListCell: UICollectionViewCell {
     var doneButtonTapHandler: ((Bool) -> Void)?
     var deleteButtonTapHandler: (() -> Void)?
     
+    // 스토리보드에서 깨어났을 때
     override func awakeFromNib() {
         super.awakeFromNib()
+        // 리셋을 해야한다.
         reset()
     }
-    
+    // 화면 밖으로 나가서 셀이 재사용 될 때
     override func prepareForReuse() {
         super.prepareForReuse()
+        // 리셋을 해줘야 한다.
         reset()
     }
     
     func updateUI(todo: Todo) {
-        // TODO: 셀 업데이트 하기
+        // [o] TODO: 셀 업데이트 하기
         checkButton.isSelected = todo.isDone
         descriptionLabel.text = todo.detail
         descriptionLabel.alpha = todo.isDone ? 0.2 : 1
         deleteButton.isHidden = todo.isDone == false
-        showStrikeThrough(todo.isDone)
+        showStrikeThrough(todo.isDone)      // 밑줄 쫘악
     }
     
     private func showStrikeThrough(_ show: Bool) {
@@ -163,17 +175,29 @@ class TodoListCell: UICollectionViewCell {
     }
     
     func reset() {
-        // TODO: reset로직 구현
-        
+        // [o] TODO: reset로직 구현
+        // reset은 일단 초기값으로 할당한다.
+        // 왜냐하면 나중에 updateUI()로 셀을 업데이트 하면 된다.
+        descriptionLabel.alpha = 1
+        deleteButton.isHidden = true
+        showStrikeThrough(false)
     }
     
     @IBAction func checkButtonTapped(_ sender: Any) {
-        // TODO: checkButton 처리
+        // [o] TODO: checkButton 처리
+        checkButton.isSelected = !checkButton.isSelected
+        let isDone = checkButton.isSelected
+        showStrikeThrough(isDone)
+        descriptionLabel.alpha = isDone ? 0.2 : 1
+        deleteButton.isHidden = !isDone
         
+        // isDone 이냐 아니냐를 넘겨주면 그 Todo 객체를 업데이트 하던지 안하던지.
+        doneButtonTapHandler?(isDone)
     }
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
-        // TODO: deleteButton 처리 
+        // [o] TODO: deleteButton 처리
+        // delete 기능은 view에서 하는 것이 아니고 클로저로 TodoManager에게 넘긴다. 데이터를 삭제하기만.
         deleteButtonTapHandler?()
     }
 }

@@ -99,11 +99,13 @@ extension Storage {
     static func saveTodo(_ obj: Todo, fileName: String) {
         let url = Directory.documents.url.appendingPathComponent(fileName, isDirectory: false)
         print("---> [TEST] save to here: \(url)")
-        let encoder = JSONEncoder()
+        let encoder = JSONEncoder()     // Struct -> Json 인코딩
         encoder.outputFormatting = .prettyPrinted
         
         do {
             let data = try encoder.encode(obj)
+            
+            // FileManager형 이 JSON 타입을 실제 파일로 만든다.
             if FileManager.default.fileExists(atPath: url.path) {
                 try FileManager.default.removeItem(at: url)
             }
@@ -115,13 +117,13 @@ extension Storage {
     
     static func restoreTodo(_ fileName: String) -> Todo? {
         let url = Directory.documents.url.appendingPathComponent(fileName, isDirectory: false)
-        guard FileManager.default.fileExists(atPath: url.path) else { return nil }
-        guard let data = FileManager.default.contents(atPath: url.path) else { return nil }
+        guard FileManager.default.fileExists(atPath: url.path) else { return nil }  // 파일 읽어온다.
+        guard let data = FileManager.default.contents(atPath: url.path) else { return nil } // 읽어온 것을 데이터 형태로 만든다.
         
-        let decoder = JSONDecoder()
+        let decoder = JSONDecoder()     // JSON -> Struct 디코딩
         
         do {
-            let model = try decoder.decode(Todo.self, from: data)
+            let model = try decoder.decode(Todo.self, from: data)   // model은 Todo 모델이다.
             return model
         } catch let error {
             print("---> Failed to decode msg: \(error.localizedDescription)")
