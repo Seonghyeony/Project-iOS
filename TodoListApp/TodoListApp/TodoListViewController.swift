@@ -31,19 +31,21 @@ class TodoListViewController: UIViewController {
         // [완료] TODO: 데이터 불러오기
         todoListViewModel.loadTasks()
         
-        let todo = TodoManager.shared.createTodo(detail: "Corona 싫어!", isToday: true)
-        Storage.saveTodo(todo, fileName: "test.json")
+        // 데이터 저장 Test
+//        let todo = TodoManager.shared.createTodo(detail: "Corona 싫어!", isToday: true)
+//        Storage.saveTodo(todo, fileName: "test.json")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let todo = Storage.restoreTodo("test.json")
-        print("---> restore from disk: \(todo)")
+        // 데이터 불러오기 Test
+//        let todo = Storage.restoreTodo("test.json")
+//        print("---> restore from disk: \(todo)")
     }
     
     @IBAction func isTodayButtonTapped(_ sender: Any) {
-        // TODO: 투데이 버튼 토글 작업
-        
+        // [o] TODO: 투데이 버튼 토글 작업
+        isTodayButton.isSelected = !isTodayButton.isSelected
     }
     
     @IBAction func addTaskButtonTapped(_ sender: Any) {
