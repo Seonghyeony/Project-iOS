@@ -25,7 +25,9 @@ class TodoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: 키보드 디텍션
+        // [o] TODO: 키보드 Detection.
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)     // keyboardWillShowNotification이 감지가 되면 selector의 adjustInputView가 호출 된다.
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         
         // [완료] TODO: 데이터 불러오기
@@ -54,14 +56,27 @@ class TodoListViewController: UIViewController {
         // and tableview reload or update
     }
     
-    // TODO: BG 탭했을때, 키보드 내려오게 하기
+    // TODO: BG 탭했을때, 키보드 내려오게 하기 - Tap Gesture Recognizer.
+    @IBAction func tapBG(_ sender: Any) {
+        inputTextField.resignFirstResponder()   // 사용자한테 제일 먼저 반응하는 녀석이였는데 그것을 resign 한다.
+    }
 }
 
 extension TodoListViewController {
     @objc private func adjustInputView(noti: Notification) {
-        guard let userInfo = noti.userInfo else { return }
+        guard let userInfo = noti.userInfo else { return }  // userInfo: 딕셔너리 타입.
         // TODO: 키보드 높이에 따른 인풋뷰 위치 변경
+        // 키보드가 다 올라왔을 때, 나 내려갔을 때 위치와 크기 정보를 달라!
+        guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        if noti.name == UIResponder.keyboardWillShowNotification {  // 키보드가 보여지는 noti면,
+            let adjustmentHeight = keyboardFrame.height - view.safeAreaInsets.bottom   // view.safeAreaInsets 아이폰 X 부터 노치가 생기면서 위 아래에 safeArea가 생겼다. 이 부분을 빼줘야 한다.
+            
+            inputViewBottom.constant = adjustmentHeight
+        } else {
+            inputViewBottom.constant = 0
+        }
         
+        print("---> Keyboard End Frame: \(keyboardFrame)")
     }
 }
 
