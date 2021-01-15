@@ -46,7 +46,21 @@ extension SearchViewController: UICollectionViewDataSource {
 }
 
 extension SearchViewController: UICollectionViewDelegate {
-    
+    // 클릭 시 어떻게 할 거냐
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // movie
+        // player vc
+        // player vc + movie
+        // presenting player vc
+        
+        
+        let movie = movies[indexPath.item]
+        
+        let sb = UIStoryboard(name: "Player", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "PlayerViewController") as! PlayerViewController
+        vc.modalPresentationStyle = .fullScreen // modal style 변경.
+        present(vc, animated: false, completion: nil)
+    }
 }
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
