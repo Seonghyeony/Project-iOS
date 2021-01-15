@@ -7,17 +7,65 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var resultCollectionView: UICollectionView!
     
+    // MVVM 패턴에서는 벗어나는 문법
+    var movies: [Movie] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
 }
+
+extension SearchViewController: UICollectionViewDataSource {
+    // 몇 개 넘어오니?
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movies.count
+    }
+    // 어떻게 표현할거니?
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ResultCell", for: indexPath) as? ResultCell else {
+            return UICollectionViewCell()
+        }
+        
+        let movie = movies[indexPath.item]
+        let url = URL(string: movie.thumbnailPath)!
+        // imagePath(String) -> image
+        // 외부 코드(오픈소스) 가져다쓰기. 방법들.
+        // SPM(Swift Package Manager), Cocoa Pod, Carthage
+        cell.movieThumbnail.kf.setImage(with: url)  // kf: 오픈소스
+        return cell
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegate {
+    
+}
+
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+    // 사이즈 어떻게 할 거냐
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let margin: CGFloat = 8
+        let itemSpacing: CGFloat = 10
+        
+        let width = (collectionView.bounds.width - margin * 2 - itemSpacing * 2) / 3
+        let height = width * 10 / 7
+        return CGSize(width: width, height: height)
+    }
+}
+
+class ResultCell: UICollectionViewCell {
+    @IBOutlet weak var movieThumbnail: UIImageView!
+    
+}
+
 
 /**
  searchBar에 대한 일을 SearchViewController에게 위임 시켜서 동작하게 한다. (Delegate)
@@ -40,13 +88,20 @@ extension SearchViewController: UISearchBarDelegate {
         
         // 네트워킹을 통한 검색
         // - 목표: searchTerm을 가지고 네트워킹을 통해서 영화 검색
-        // - 검색API가 필요
-        // - 검색에 대한 결과를 받아올 모델 Movie, Response
-        // - 결과를 받아와서, CollectionView로 표현해주자
+        // - [o] 검색API가 필요
+        // - [o] 검색에 대한 결과를 받아올 모델 Movie, Response
+        // - [o] 결과를 받아와서, CollectionView로 표현해주자
         
+        // 이것은 네트워크 스레드라서 많이 느리다.
         SearchAPI.search(searchTerm) { movies in
-            // collectionView로 표현하기
+            // [o] collectionView로 표현하기
             print("---> 몇 개 넘어왔어?? \(movies.count), 첫 번째 것 제목:  \(movies.first?.title)")
+            
+            // 네트워크는 느린 녀석이다. 그래서 UI 쪽 메서드는 메인 스레드에서 해야 한다.
+            DispatchQueue.main.async {
+                self.movies = movies
+                self.resultCollectionView.reloadData()
+            }
         }
         
         print("---> 검색어: \(searchTerm)")
