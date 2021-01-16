@@ -24,14 +24,42 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // playerView: AVPlayer의 output을 담당
+        playerView.player = player
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 뷰가 보여지는 시점에 play()
+        play()
     }
     
     
     @IBAction func togglePlaybutton(_ sender: Any) {
-        playButton.isSelected = !playButton.isSelected
+        if player.isPlaying {
+            pause()
+        } else {
+            play()
+        }
+    }
+    
+    func play() {
+        player.play()
+        playButton.isSelected = true
+    }
+    
+    func pause() {
+        player.pause()
+        playButton.isSelected = false
+    }
+    
+    func reset() {
+        pause()
+        player.replaceCurrentItem(with: nil)    // playerItem을 제거 -> nil로 셋팅.
     }
     
     @IBAction func closeButtonTapped(_ sender: Any) {
+        reset()
         dismiss(animated: false, completion: nil)
     }
 }
