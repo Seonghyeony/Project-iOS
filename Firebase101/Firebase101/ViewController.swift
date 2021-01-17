@@ -14,12 +14,14 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var dataLabel: UILabel!
     
+    @IBOutlet weak var numOfCustomers: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         updateLabel()
-        saveBasicTypes()
-        saveCustomers()
+//        saveBasicTypes()
+//        saveCustomers()
+        fetchCustomers()
     }
     
     func updateLabel() {
@@ -39,7 +41,7 @@ extension ViewController {
     func saveBasicTypes() {
         // Firebase child ("key").setValue(value)
         // - String, Number, Dictionary, Array
-        
+
         db.child("int").setValue(3)
         db.child("doubel").setValue(3.5)
         db.child("str").setValue("string value - My name is Hyeony")
@@ -66,7 +68,31 @@ extension ViewController {
     }
 }
 
-struct Customer {
+// MARK: Read(Fetch) Data
+extension ViewController {
+    func fetchCustomers() {
+        db.child("customers").observeSingleEvent(of: .value) { snapshot in
+            print("--> \(snapshot.value)")
+            
+            do {
+                // snapshot의 데이터를 최대한 JSON Type으로 만들면 Codable을 사용할 수 있다.
+                let data = try JSONSerialization.data(withJSONObject: snapshot.value, options: [])  // JSON 형태로 만들어 준다.
+                
+                let decoder = JSONDecoder()
+                let customers: [Customer] = try decoder.decode([Customer].self, from: data)
+                
+                DispatchQueue.main.async {
+                    self.numOfCustomers.text = "# of Customers: \(customers.count)"
+                }
+            } catch let error {
+                print("---> error: \(error.localizedDescription)")
+            }
+            
+        }
+    }
+}
+
+struct Customer: Codable {
     let id: String
     let name: String
     let books: [Book]
@@ -80,7 +106,7 @@ struct Customer {
     static var id: Int = 0
 }
 
-struct Book {
+struct Book: Codable {
     let title: String
     let author: String
     
