@@ -14,9 +14,13 @@
 		CB7EA7E325B41A2F00BDF62C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB7EA7E225B41A2F00BDF62C /* Assets.xcassets */; };
 		CB7EA7E625B41A2F00BDF62C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB7EA7E425B41A2F00BDF62C /* LaunchScreen.storyboard */; };
 		CB7EA7EF25B41B0E00BDF62C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB7EA7EE25B41B0E00BDF62C /* GoogleService-Info.plist */; };
+		FF4F4C60F206652D80BDD16F /* Pods_Firebase101.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44606FC5A93641E08A53EE0B /* Pods_Firebase101.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D55E3A7FE97595C2AE3DE69 /* Pods-Firebase101.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase101.release.xcconfig"; path = "Target Support Files/Pods-Firebase101/Pods-Firebase101.release.xcconfig"; sourceTree = "<group>"; };
+		3FCD1BFAAA5A64E4DC4FCED0 /* Pods-Firebase101.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Firebase101.debug.xcconfig"; path = "Target Support Files/Pods-Firebase101/Pods-Firebase101.debug.xcconfig"; sourceTree = "<group>"; };
+		44606FC5A93641E08A53EE0B /* Pods_Firebase101.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Firebase101.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7EA7D625B41A2B00BDF62C /* Firebase101.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Firebase101.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7EA7D925B41A2B00BDF62C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB7EA7DB25B41A2B00BDF62C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,17 +37,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF4F4C60F206652D80BDD16F /* Pods_Firebase101.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C1FAA5024D8559F7A41A910 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44606FC5A93641E08A53EE0B /* Pods_Firebase101.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B17BAF8217E178766BD9525 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3FCD1BFAAA5A64E4DC4FCED0 /* Pods-Firebase101.debug.xcconfig */,
+				1D55E3A7FE97595C2AE3DE69 /* Pods-Firebase101.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CB7EA7CD25B41A2B00BDF62C = {
 			isa = PBXGroup;
 			children = (
 				CB7EA7D825B41A2B00BDF62C /* Firebase101 */,
 				CB7EA7D725B41A2B00BDF62C /* Products */,
+				7B17BAF8217E178766BD9525 /* Pods */,
+				0C1FAA5024D8559F7A41A910 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB7EA7EA25B41A2F00BDF62C /* Build configuration list for PBXNativeTarget "Firebase101" */;
 			buildPhases = (
+				DA98E3FD0E16FA27FC05E721 /* [CP] Check Pods Manifest.lock */,
 				CB7EA7D225B41A2B00BDF62C /* Sources */,
 				CB7EA7D325B41A2B00BDF62C /* Frameworks */,
 				CB7EA7D425B41A2B00BDF62C /* Resources */,
+				43EA720748073567166652AD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +162,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		43EA720748073567166652AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Firebase101/Pods-Firebase101-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Firebase101/Pods-Firebase101-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Firebase101/Pods-Firebase101-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA98E3FD0E16FA27FC05E721 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Firebase101-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CB7EA7D225B41A2B00BDF62C /* Sources */ = {
@@ -287,6 +356,7 @@
 		};
 		CB7EA7EB25B41A2F00BDF62C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FCD1BFAAA5A64E4DC4FCED0 /* Pods-Firebase101.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -306,6 +376,7 @@
 		};
 		CB7EA7EC25B41A2F00BDF62C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D55E3A7FE97595C2AE3DE69 /* Pods-Firebase101.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
