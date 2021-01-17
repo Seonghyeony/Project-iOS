@@ -41,18 +41,35 @@ class HomeViewController: UIViewController {
     
 
     @IBAction func playButtonTapped(_ sender: Any) {
-//        SearchAPI.search("interstella") { movies in
-//            guard let interstella = movies.first else { return }
-//            DispatchQueue.main.async {
-//                let url = URL(string: interstella.previewURL)!
-//                let item = AVPlayerItem(url: url)
-//                
-//                let sb = UIStoryboard(name: "Player", bundle: nil)
-//                let vc = sb.instantiateViewController(identifier: "PlayerViewController") as! PlayerViewController
-//                vc.modalPresentationStyle = .fullScreen
-//                vc.player.replaceCurrentItem(with: item)
-//                self.present(vc, animated: false, completion: nil)
-//            }
-//        }
+        // [o] intersella 에 대한 정보를 검색 API로 가져온다
+        // [o] 거기서 interstella 객체 하나를 가져온다
+        // [o] 그 객체를 이용해서 PlayViewController를 띄운다.
+        
+        SearchAPI.search("interstella") { movies in
+            guard let interstella = movies.first else {
+                DispatchQueue.main.async {
+                    let message = "소스가 없습니다."
+                    
+                    let alert = UIAlertController(title: "오류", message: message, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "닫기", style: .default, handler: nil)
+                    alert.addAction(action)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let url = URL(string: interstella.previewURL)!
+                let item = AVPlayerItem(url: url)
+                
+                let sb = UIStoryboard(name: "Player", bundle: nil)
+                let vc = sb.instantiateViewController(identifier: "PlayerViewController") as! PlayerViewController
+                vc.player.replaceCurrentItem(with: item)
+                
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: false, completion: nil)
+            }
+        }
     }
 }
