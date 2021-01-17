@@ -9,22 +9,28 @@ import UIKit
 import FirebaseDatabase
 
 class ViewController: UIViewController {
-    
-    let db = Database.database().reference()
 
     @IBOutlet weak var dataLabel: UILabel!
-    
     @IBOutlet weak var numOfCustomers: UILabel!
+    let db = Database.database().reference()
+    
+    var customers: [Customer] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         updateLabel()
-//        saveBasicTypes()
+        saveBasicTypes()
 //        saveCustomers()
         fetchCustomers()
+        
+        // update, delete
+//        updateBasicTypes()
+//        deleteBasicTypes()
     }
     
     func updateLabel() {
+        // observingSingleEvent: firstData에 있는 value 값을 가져오겠다!
         db.child("firstData").observeSingleEvent(of: .value) { snapshot in
             print("---> \(snapshot)")
             
@@ -34,6 +40,33 @@ class ViewController: UIViewController {
                 self.dataLabel.text = value
             }
         }
+    }
+    
+    @IBAction func createCustomer(_ sender: Any) {
+        saveCustomers()
+    }
+    @IBAction func fetchCustomer(_ sender: Any) {
+        fetchCustomers()
+    }
+    
+    func updateCustomers() {
+        guard customers.isEmpty == false else { return }
+        customers[0].name = "Sonny"
+        
+        let dictionary = customers.map { $0.toDictionary }
+        db.updateChildValues(["customers": dictionary])
+    }
+    
+    @IBAction func updateCustomer(_ sender: Any) {
+        updateCustomers()
+    }
+    
+    func deleteCustomers() {
+        db.child("customers").removeValue()
+    }
+    
+    @IBAction func deleteCustomer(_ sender: Any) {
+        deleteCustomers()
     }
 }
 
@@ -80,7 +113,7 @@ extension ViewController {
                 
                 let decoder = JSONDecoder()
                 let customers: [Customer] = try decoder.decode([Customer].self, from: data)
-                
+                self.customers = customers
                 DispatchQueue.main.async {
                     self.numOfCustomers.text = "# of Customers: \(customers.count)"
                 }
@@ -92,9 +125,27 @@ extension ViewController {
     }
 }
 
+extension ViewController {
+    func updateBasicTypes() {
+//        db.child("int").setValue(3)
+//        db.child("doubel").setValue(3.5)
+//        db.child("str").setValue("string value - My name is Hyeony")
+        
+        db.updateChildValues(["int": 6])
+        db.updateChildValues(["double": 5.4])
+        db.updateChildValues(["str": "변경된 String"])
+    }
+    
+    func deleteBasicTypes() {
+        db.child("int").removeValue()
+        db.child("doubel").removeValue()
+        db.child("str").removeValue()
+    }
+}
+
 struct Customer: Codable {
     let id: String
-    let name: String
+    var name: String
     let books: [Book]
     
     var toDictionary: [String: Any] {
