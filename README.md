@@ -1,7 +1,7 @@
 # Project-iOS
 iOS basic study
 
-* Swift-basic: 스위프트 언어 공부
+* Swift-basic: 스위프트 언어 공부, 네트워킹(URLSession)
 
 * MyAlbum: 사진을 띄어주는 앱
   - UIAlert, 기본적인 Method 작성
