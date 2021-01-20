@@ -9,8 +9,11 @@
 import UIKit
 import Kingfisher
 import AVFoundation
+import FirebaseDatabase
 
 class SearchViewController: UIViewController {
+    
+    let db = Database.database().reference().child("searchHistory")
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var resultCollectionView: UICollectionView!
@@ -121,6 +124,10 @@ extension SearchViewController: UISearchBarDelegate {
             DispatchQueue.main.async {
                 self.movies = movies
                 self.resultCollectionView.reloadData()
+                
+                // Firebase에 검색 History 저장.
+                let timestamp: Double = Date().timeIntervalSince1970.rounded()  // rounded(): 소수점 이하는 버림.
+                self.db.childByAutoId().setValue(["term": searchTerm, "timestamp": timestamp])
             }
         }
         
