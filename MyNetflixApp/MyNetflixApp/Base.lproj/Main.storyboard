@@ -246,7 +246,7 @@
         <!--공개예정-->
         <scene sceneID="ryf-ci-vYK">
             <objects>
-                <viewController id="Blf-Or-i5j" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpComingViewController" id="Blf-Or-i5j" customClass="UpComingViewController" customModule="MyNetflixApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ce7-Bh-AkS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -272,7 +272,7 @@
                                                             <constraint firstAttribute="height" constant="200" id="Ano-Fi-gnE"/>
                                                         </constraints>
                                                         <connections>
-                                                            <segue destination="9js-c2-7F2" kind="embed" id="5rn-Iu-j3M"/>
+                                                            <segue destination="9js-c2-7F2" kind="embed" identifier="award" id="5rn-Iu-j3M"/>
                                                         </connections>
                                                     </containerView>
                                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1va-UP-W2i">
@@ -281,7 +281,7 @@
                                                             <constraint firstAttribute="height" constant="200" id="9FR-ab-19x"/>
                                                         </constraints>
                                                         <connections>
-                                                            <segue destination="xY4-rf-oPJ" kind="embed" id="1kt-2m-ngg"/>
+                                                            <segue destination="xY4-rf-oPJ" kind="embed" identifier="hot" id="1kt-2m-ngg"/>
                                                         </connections>
                                                     </containerView>
                                                 </subviews>

@@ -11,10 +11,12 @@ import AVFoundation
 
 class HomeViewController: UIViewController {
 
+    // 3개의 view controller를 가지고 있다.
     var awardRecommendListViewController: RecommendListViewController!
     var hotRecommendListViewController: RecommendListViewController!
     var myRecommendListViewController: RecommendListViewController!
     
+    // 세그웨이가 연결시켜주고 있다.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "award" {
             let destinationVC = segue.destination as? RecommendListViewController

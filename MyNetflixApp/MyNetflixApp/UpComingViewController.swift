@@ -9,6 +9,25 @@
 import UIKit
 
 class UpComingViewController: UIViewController {
+    
+    // 2개의 view controller를 가지고 있다.
+    var awardRecommendListViewController: RecommendListViewController!
+    var hotRecommendListViewController: RecommendListViewController!
+    
+    // 세그웨이가 연결시켜주고 있다.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "award" {
+            let destinationVC = segue.destination as? RecommendListViewController   // 연결
+            awardRecommendListViewController = destinationVC
+            awardRecommendListViewController.viewModel.updateType(.award)
+            awardRecommendListViewController.viewModel.fetchItems()
+        } else if segue.identifier == "hot" {
+            let destinationVC = segue.destination as? RecommendListViewController
+            hotRecommendListViewController = destinationVC
+            hotRecommendListViewController.viewModel.updateType(.hot)
+            hotRecommendListViewController.viewModel.fetchItems()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

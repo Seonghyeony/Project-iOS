@@ -20,6 +20,7 @@
 		94DFD7552435DA88009687ED /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DFD7542435DA88009687ED /* SearchViewController.swift */; };
 		94DFD7812436F11B009687ED /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DFD7802436F11B009687ED /* PlayerView.swift */; };
 		CB7EA7CC25B1A9D300BDF62C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CB7EA7CB25B1A9D300BDF62C /* Kingfisher */; };
+		CBF7193425B81DE800DC09F3 /* UpComingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF7193325B81DE800DC09F3 /* UpComingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +51,7 @@
 		94DFD7522435CED7009687ED /* RecommendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendListViewController.swift; sourceTree = "<group>"; };
 		94DFD7542435DA88009687ED /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		94DFD7802436F11B009687ED /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		CBF7193325B81DE800DC09F3 /* UpComingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				94098357243468AE00FD1040 /* Assets.xcassets */,
 				94098359243468AE00FD1040 /* LaunchScreen.storyboard */,
 				9409835C243468AE00FD1040 /* Info.plist */,
+				CBF7193325B81DE800DC09F3 /* UpComingViewController.swift */,
 			);
 			path = MyNetflixApp;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				94DFD7552435DA88009687ED /* SearchViewController.swift in Sources */,
 				94DFD7812436F11B009687ED /* PlayerView.swift in Sources */,
 				9409834F243468AA00FD1040 /* AppDelegate.swift in Sources */,
+				CBF7193425B81DE800DC09F3 /* UpComingViewController.swift in Sources */,
 				94098351243468AA00FD1040 /* SceneDelegate.swift in Sources */,
 				94DFD7532435CED7009687ED /* RecommendListViewController.swift in Sources */,
 				940983632434692900FD1040 /* HomeViewController.swift in Sources */,
