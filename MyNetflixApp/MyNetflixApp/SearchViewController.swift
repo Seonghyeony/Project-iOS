@@ -39,8 +39,7 @@ extension SearchViewController: UICollectionViewDataSource {
         let movie = movies[indexPath.item]
         let url = URL(string: movie.thumbnailPath)!
         // imagePath(String) -> image
-        // 외부 코드(오픈소스) 가져다쓰기. 방법들.
-        // SPM(Swift Package Manager), Cocoa Pod, Carthage
+        // 외부 코드(오픈소스) 가져다쓰기. 방법들. SPM(Swift Package Manager), Cocoa Pod, Carthage
         cell.movieThumbnail.kf.setImage(with: url)  // kf: 오픈소스
         return cell
     }
@@ -126,7 +125,6 @@ extension SearchViewController: UISearchBarDelegate {
         }
         
         print("---> 검색어: \(searchTerm)")
-        
     }
 }
 
